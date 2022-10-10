@@ -1,0 +1,29 @@
+apply plugin: 'maven-publish'
+
+def getVersionName = { ->
+    return "1.0.o"
+}
+
+def getArtifactId = { ->
+    return "sdkKit"
+}
+
+
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+
+                groupId = 'com.sdkKit'
+                artifactId = getArtifactId()
+                version = getVersionName()
+            }
+        }
+
+
+    }
+}
+
+configurations.maybeCreate("default")
+artifacts.add("default", file('SceytSDK-debug.aar'))
